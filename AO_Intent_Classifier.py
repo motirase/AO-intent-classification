@@ -68,7 +68,7 @@ app.config['SECRET_KEY'] = 'mysecretkey'
 
 class FlowerForm(FlaskForm):
 
-	sep_len = TextAreaField("Enter Your Text", [validators.Length(min=3, max=100000)], render_kw={"placeholder": "Maaloo iddoo kanatti Barreeffama keessan galchaa!..."})
+	text_input = TextAreaField("Enter Your Text", [validators.Length(min=3, max=100000)], render_kw={"placeholder": "Maaloo iddoo kanatti Barreeffama keessan galchaa!..."})
 
 	submit = SubmitField("Analyze")
 
@@ -79,7 +79,7 @@ def index():
 	
 	if form.validate_on_submit():
 
-		session['sep_len'] = form.sep_len.data
+		session['text_input'] = form.text_input.data
 		
 		return redirect(url_for("prediction"))
 
@@ -94,7 +94,7 @@ def prediction():
 	
 	content = {}
 
-	content['sepal_length'] = session['sep_len']
+	content['sepal_length'] = session['text_input']
 	
 	results, class_ind = return_prediction(new_model, content)
 
