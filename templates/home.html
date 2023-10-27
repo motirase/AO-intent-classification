@@ -1,1 +1,136 @@
+<!doctype html>
+<html lang="en">
 
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link type="text/css" href="{{ url_for('static', filename='bootstrap.min.css')}}" rel="stylesheet">
+    <title> Afan Oromo Intent classifier </title>
+	
+<style>
+.dimension {
+	width: 500px;
+	height: 300px;
+}
+
+.nav-tabs .nav-link.active {
+	background-color: #00d323;
+	color: #fff;
+	border: 3px solid #2e00d3;
+}
+
+.nav-tabs .nav-link {
+	background-color: #fff;
+	color: #6200d3;
+	border: 3px solid #00bad3;
+	margin-right: 2rem;
+	padding-left: 3rem;
+	padding-right: 3rem;
+}
+
+.nav-tabs .nav-link:hover {
+	border: 3px solid #4a00d3;
+}
+
+.nav-tabs {
+	border-bottom: 1px solid #0e00d3;
+}
+
+.tab-content {
+	border: 1px solid #00d32e;
+	padding: 20px;
+}
+</style>
+    
+</head>
+
+<body>
+    <div class="container mt-2">
+        <h3 class="mb-3">Afan Oromo Intent classifier</h3>
+		<ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" role="tab" data-toggle="tab" href="{{ url_for('index')}}">
+                     Home</a>
+            </li>
+           
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#contact">
+                     Ilaali</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+		
+            <div class="tab-pane active" id="">
+                <div class="row border g-0 rounded shadow-sm">
+                    <div class="col-md-7 p-4 border">
+					 <form method="POST">
+					
+							{# This hidden_tag is a CSRF security feature. #}
+							{{ form.hidden_tag() }}
+
+							{{form.sep_len(rows='7',cols='80')}}
+							
+							<br>
+							
+							{{ form.submit() }}
+					 </form>					 						
+                     </div>
+					 <div class="col-md-5 border p-2">
+						<h4 class="btn btn-primary">Hub</h4>
+						 <div>
+							<ul>
+								<li class="list-group-item-primary"> jechoota mataa keessanii barreessuu dandeessu </li>
+								<li class="list-group-item-primary"> iddoo birooti koppii gootanii asirra galchuu dandeessu</li>
+								<li class="list-group-item-primary"> online(facebook fi miidiyaalee biroo irraas koppii gochuun ilaaluu ni dandeessu) </li>
+							</ul>
+						 </div>
+						
+					</div>
+                    
+                </div>
+            </div>
+
+            <div class="tab-pane" id="contact">
+                <div class="row border g-0 rounded shadow-sm">
+                    <div class="col p-4">
+                        <h3>Contact</h3>
+                       	<hr>
+                        <p>
+                            <h5> Result From LSTM   Model </h5>
+							<img src="/static/images/tra.png" class="img-fluid">
+                        </p>
+						<hr>
+						<p>
+                            <h5> Result Validation loss From LSTM  Model </h5>
+							<img src="/static/images/loss.png" class="img-fluid">
+                        </p>
+						<hr>
+						
+						<hr>
+                    </div>
+                    
+                </div>
+            </div>
+			
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='bootstrap.bundle.min.js')}}" ></script>
+
+<script >
+
+$('.nav-tabs').scrollingTabs({
+  enableSwiping: true
+});
+
+$('.nav-tabs a').click(function(){
+    $(".tab-content").animate({ scrollTop: 0 }, 600);
+ });
+//# sourceURL=pen.js
+</script>
+</body>
+</html>

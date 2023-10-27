@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link type="text/css" href="{{ url_for('static', filename='bootstrap.min.css')}}" rel="stylesheet">
+	
+
+    <title>  Intent Detector </title>
+    <style>
+        .dimension {
+            width: 500px;
+            height: 300px;
+        }
+        
+        .nav-tabs .nav-link.active {
+            background-color: #00d3a5;
+            color: #fff;
+            border: 3px solid #00bad3;
+        }
+        
+        .nav-tabs .nav-link {
+            background-color: #fff;
+            color: #0020d3;
+            border: 3px solid #0031d3;
+            margin-right: 2rem;
+            padding-left: 3rem;
+            padding-right: 3rem;
+        }
+        
+        .nav-tabs .nav-link:hover {
+            border: 3px solid #000ed3;
+        }
+        
+        .nav-tabs {
+            border-bottom: 1px solid #0031d3;
+        }
+        
+        .tab-content {
+            border: 1px solid rgb(0, 80, 211);
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-2">
+        
+		
+		<h3 class="mb-3">Afan Oromo Intent Classifier</h3>
+	
+		
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" role="tab" data-toggle="tab" href="{{ url_for('index')}}">
+                     Home</a>
+            </li>
+         
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#contact">
+                     Analysis</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+		
+            <div class="tab-pane active" id="profile">
+                <div class="row border g-0 rounded shadow-sm">
+                    <div class="col-md-8 p-2 ">
+                        <h3 style="color:rgb(115, 255, 0); text-align:justify"> Your Input</h3>					
+						<!-- --->			
+						  <div class = "input-group border p-2">
+						   <p style="text-align:justify">														 
+							 <b style="color:rgb(5, 210, 105);"> 
+							 {{session['sep_len']}} </b>
+							</p>
+														 
+						  </div>
+						
+						</div>
+						
+						<div class="col-md-3 p-2 justify-content-center">		
+											
+							  <h4>Analyzed Result</h4>        
+							   {% if results=='Question' %}
+							  <div class="alert alert-primary" role="alert">		 
+								<h5>{{results}}({{class_ind}})</h5>
+							  </div>
+							  {% endif %}
+							  
+							  {% if results=='Negative' %}
+							  <div class="alert alert-danger" role="alert">		 
+							   <h5>{{results}}({{class_ind}})</h5>
+							  </div>
+							  {% endif %}	
+                              {% if results=='Positive' %}
+							  <div class="alert alert-danger" role="alert">		 
+							   <h5>{{results}}({{class_ind}})</h5>
+							  </div>
+							  {% endif %}
+                              {% if results=='Suggestion' %}
+							  <div class="alert alert-danger" role="alert">		 
+							   <h5>{{results}}({{class_ind}})</h5>
+							  </div>
+							  {% endif %}
+                              {% if results=='Wish' %}
+							  <div class="alert alert-danger" role="alert">		 
+							   <h5>{{results}}({{class_ind}})</h5>
+							  </div>
+							  {% endif %}									
+							</div>
+						
+						</div>
+                    
+                </div>
+            
+            <div class="tab-pane" id="contact">
+                <div class="row border g-0 rounded shadow-sm">
+                    <div class="col p-4">
+                        <h3>Contact</h3>
+						<hr>
+                        <p>
+                            <h5> Result From LSTM  Model </h5>
+							<img src="/static/images/tra.png" class="img-fluid">
+                        </p>
+						<hr>
+						<p>
+                            <h5> Result Validation loss From LSTM </h5>
+							<img src="/static/images/loss.png" class="img-fluid">
+                        </p>
+						<hr>
+						
+						<hr>
+						
+                    </div>
+                    
+                </div>
+            </div>
+			
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='bootstrap.bundle.min.js')}}" ></script>
+
+
+</body>
+</html>
+
